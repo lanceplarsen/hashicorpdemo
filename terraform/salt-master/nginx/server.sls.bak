@@ -1,0 +1,59 @@
+#Install NGINX
+nginx:
+  pkg.installed:
+    - name: nginx
+  service.running:
+    - name: nginx
+    - enable: True
+#Apply Iptables
+debconf-utils:
+  pkg.installed
+iptables-debconf:
+  debconf.set:
+    - name: iptables
+    - data:
+        'iptables-persistent/autosave_v4':  {'type': 'boolean', 'value': True}
+        'iptables-persistent/autosave_v6':  {'type': 'boolean', 'value': True}
+iptables-persistent:
+  pkg.installed
+netfilter-persistent.service:
+  service.running:
+    - enable: True
+    - watch: 
+      - file: /etc/iptables/rules.v4
+  file.managed:
+  - name: /etc/iptables/rules.v4
+  - source: salt://conf/nginx_iptables.sh
+#Update the dhclient file to resovle dns locally
+networking:
+  service.running:
+    - watch:
+      - file: /etc/dhcp/dhclient.conf
+  file.managed:
+    - name: /etc/dhcp/dhclient.conf
+    - source: salt://conf/dhclient.conf
+#Apply the consul template
+Run consul template install:
+  cmd.script:
+    - name: install_consul_template
+    - source: salt://installers/install_consul_template.sh
+consul_template:  
+  service.running:
+    - enable: True
+    - watch:
+      - file: /etc/systemd/system/consul_template.service
+      - file: /etc/consul.d/nginx.tpl
+      - file: /etc/consul.d/cert.tpl
+#Add the consul template files
+/etc/systemd/system/consul_template.service:
+  file.managed: 
+    - name: /etc/systemd/system/consul_template.service
+    - source: salt://services/nginx_consul_template.service
+/etc/consul.d/nginx.tpl:
+  file.managed:
+    - name: /etc/consul.d/nginx.tpl
+    - source: salt://templates/nginx.tpl
+/etc/consul.d/cert.tpl:
+  file.managed:
+    - name: /etc/consul.d/cert.tpl
+    - source: salt://templates/cert.tpl

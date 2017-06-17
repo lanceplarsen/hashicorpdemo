@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Welcome to my HashiCorp demo. Translate some text on GCP...
+        form(method='POST' action='/nodetranslate/translate')
+          div.form-group
+            label(for='language') Language
+            input.form-control(type='text' id='language' placeholder='FR' name='language')
+          div.form-group
+            label(for='phrase') Phrase
+            input.form-control(type='text' id='phrase' placeholder='Hello' name='phrase')
+          button.btn.btn-primary(type='submit') Translate

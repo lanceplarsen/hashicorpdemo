@@ -1,0 +1,11 @@
+[Unit]
+Description=consul-template
+
+[Service]
+User=root
+ExecStart=/usr/bin/consul-template -vault-token=05ada700-12cf-1d2d-cf66-fd4d2a99a59b  -vault-addr http://vault.service.consul:8200 -log-level debug -template "/etc/consul.d/cert.tpl:/etc/nginx/cert.pem" -template "/etc/consul.d/nginx.tpl:/etc/nginx/nginx.conf:service nginx reload"
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target 

@@ -1,0 +1,15 @@
+[Unit]
+Description=consul agent
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User=root
+Environment=GOMAXPROCS=2
+Restart=on-failure
+ExecStart=/usr/bin/consul agent -server -bootstrap-expect=1 -data-dir=/tmp/consul  -retry-join-gce-tag-value consul  -bind={{ grains['ipv4'][0] }} -config-dir=/etc/consul.d -syslog -ui -client=0.0.0.0
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target

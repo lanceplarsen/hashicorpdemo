@@ -1,0 +1,22 @@
+{
+  "variables": {
+    "gcp_project_id": "",
+    "gcp_project_key": ""
+  },
+	"provisioners": [{
+		"type": "shell",
+		"inline": ["curl -o bootstrap-salt.sh -L https://bootstrap.saltstack.com",
+		"sudo sh bootstrap-salt.sh -M git develop"]
+	}],
+	"builders": [{
+		"type": "googlecompute",
+		"account_file": "{{user `gcp_project_key`}}",
+		"project_id": "{{user `gcp_project_id`}}",
+		"source_image": "ubuntu-1604-xenial-v20170516",
+		"zone": "us-central1-f",
+		"image_name": "ubuntu-1604-xenial-v20170516-saltmaster-dev",
+		"machine_type": "n1-standard-4",
+		"disk_size": 50,
+		"ssh_username": "ubuntu"
+	}]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "node-translate",
+  "version": "1.0.0",
+  "description": "GCP translator for Hashicorp demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lance Larsen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "nodemon": "^1.11.0",
+    "pug": "^2.0.0-rc.2",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "winston": "^2.3.1"
+  }
+}
