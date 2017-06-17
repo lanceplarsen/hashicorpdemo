@@ -68,8 +68,11 @@ Once you have the key you can test the application locally. The key is stored in
 
 ###### Add your API Key template to cloud storage.
 
-We need to add a template for Nomad to swap the dummy api-key with a valid api-key at container runtime. You can see an example of my template in the nomad/files/api_config.tpl under terraform/salt-master folder. Make this file public in your storage bucket.
+We need to add a template for Nomad to swap the dummy api-key with a valid api-key at container runtime. You can see an example of my template in the nomad/files/api_config.tpl under terraform/salt-master folder. Make this file public in your storage bucket. See below.
 
+```
+https://storage.googleapis.com/llarsen-hashicorp-bucket/nomad/api_config.tpl
+```
 
 ### Installing / Bootstrap
 
