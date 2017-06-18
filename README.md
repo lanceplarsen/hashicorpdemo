@@ -13,14 +13,14 @@ This project assumes you have some familiarity with the HashiCorp suite of produ
 
 Here is a high-level breakout of each product's responsibility in our project:
 - Packer - Prepackage our SaltMaster. All other machines depend on this instance for configuration.
-- Terraform - Build our app infasturcutre. Load balancers, Docker Engines, etc., for the translate app.
+- Terraform - Build our app infrastructure. Load balancers, Docker Engines, etc., for the translate app.
 - SaltStack - Install HashiCorp's runtime tools on the app infrastructure.
 - Consul - Allow our translate app services to easily discover one another.
 -  Nomad - Run the translate app container job. Support automatic registration of app services.
 -  Vault - Inject credentials/secrets into the application at runtime.
 
 ### Application Architecture
-- Salt-Master - Handles all CM for app infra.
+- Salt-Master - Handles all CM for app infrastructure.
 - Vault - Secret distribution at runtime to Consul and Nomad.
 - Nomad - Single cluster server. Docker nodes get Nomad agent to support Nomad workloads.
 - Consul - Single cluster server. All nodes get Consul agent. Auto bootstrap with GCE metadata tags. 
@@ -238,7 +238,7 @@ salt '*' state.apply
 
 ### HashiCorp Runtime Config
 
-We've created our infasturcutre and installed all the software. Now we can see the power of HashiCorp at runtime. Below are some interesting things to look at before we run the example.  You also need to modify the Nomad job file for your project. See the Nomad section for steps.
+We've created our infrastructure and installed all the software. Now we can see the power of HashiCorp at runtime. Below are some interesting things to look at before we run the example.  You also need to modify the Nomad job file for your project. See the Nomad section for steps.
 
 #### Consul
 Consul is providing service discovery for our application. For Nginx, it will monitor health of backend services, in this example, our translate app. We can use another HashiCorp tool, Consul Template, to dynamically update the Nginx conf file based on the health of our backend services. Consul template will also dynamically generate SSL certs for us, leveraging Vault as PKI issuer. Pretty cool. You can see the Consul Template files below:
