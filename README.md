@@ -204,6 +204,8 @@ Once the files are copied ssh to the Vault server. Do the following:
 
 This will initialize the Vault and copy the Vault tokens to the Consul K/V store. Grab the root token from the KV store. You can find the Vault tokens we created in our init script at this path in the Consul WEB UI.
 
+**Grab the keys from the keystore, save them locally, and then delete the keystore.**
+
 ```
 /ui/#/dc1/kv/service/vault/
 ```
