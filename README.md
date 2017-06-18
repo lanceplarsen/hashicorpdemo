@@ -288,7 +288,7 @@ Grab the token vaule and run the following from the Salt-Master server.
 
 ```
 export VAULT_TOKEN=<api policy token>
-nomad nomad run nomad/files/node.nomad
+nomad run nomad/files/node.nomad
 ```
 
 That's it. Nomad will start the job, register the services, and map all ports on the container's host.You can see all Docker containers running the below command. Also check out the updated Nginx.conf file - it will reflect the running backend app services. If you go into a running container you can see the injected API key at /usr/src/app/config.js.
