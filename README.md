@@ -5,11 +5,11 @@ Hashicorp provides DevOps tools for the modern datacenter.  You can provision hy
 
 
 ## Getting Started
-The goal of this project is to show the value of the HashiCorp suite with a functional example. This project is not intended to show best practices for HashiCorp production deployment i.e. config files, daemons, and especially distribution of Vault tokens. When you're done with the demo you'll have securely deployed a high-availability language translation app using HashiCorp's DevOps suite and SaltStack.
+The goal of this project is to show the value of the HashiCorp suite with a functional example. This project is not intended to show best practices for HashiCorp production deployment i.e. config files, daemons, and especially distribution of Vault tokens. When you're done with the demo you'll have securely deployed a high-availability language translation app using HashiCorp's DevOps suite, SaltStack, and Google Cloud Platform (GCP).
 
 ### Project DevOps Strategy
 
-This project assumes you have some familiarity with the HashiCorp suite of products, and configuration management. You can read more about the HashiCorp tools and what they can do here: https://www.hashicorp.com/devops-defined/ . These tools integrate well with existing configuration management software, and we will use SaltStack to help us install HashiCorp software on our cloud machines. You can read more about SaltStack here: https://saltstack.com/ . Puppet or another agent based CM tool (we need to collect machine details from the agents) could be used instead of SaltStack.
+This project assumes you have some familiarity with the HashiCorp suite of products, and configuration management. You can read more about the HashiCorp tools and what they can do here: https://www.hashicorp.com/devops-defined/ . These tools integrate well with existing configuration management software, and we will use SaltStack to help us install HashiCorp software on our cloud machines. You can read more about SaltStack here: https://saltstack.com/ . Puppet or another agent based CM tool (we need to collect machine details from the agents) could be used instead of SaltStack. This project uses a GCP deployment, but could be easily adapted to other clouds, or on-prem.
 
 Here is a high-level breakout of each product's responsibility in our project:
 - Packer - Prepackage our SaltMaster. All other machines depend on this instance for configuration.
