@@ -7,7 +7,7 @@ After=network-online.target
 User=root
 Environment=GOMAXPROCS=2
 Restart=on-failure
-ExecStart=/usr/bin/nomad agent -client -data-dir=/tmp/nomad -config=/etc/nomad.d/nomad.hcl
+ExecStart=/usr/bin/nomad agent -client -data-dir=/opt/nomad -config=/etc/nomad.d/nomad.hcl
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 

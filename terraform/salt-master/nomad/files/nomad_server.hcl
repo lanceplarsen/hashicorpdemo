@@ -2,7 +2,7 @@
 log_level = "DEBUG"
 
 # Setup data dir
-data_dir = "/tmp/nomad"
+data_dir = "/opt/nomad"
 
 # Enable the server
 server {
@@ -16,5 +16,5 @@ server {
 vault {
   enabled = true
   address = "http://vault.service.consul:8200"
-  token   = "05ada700-12cf-1d2d-cf66-fd4d2a99a59b"
+  token   = "c48754f8-b8cc-2d57-de91-3a8fd46b1259"
 }

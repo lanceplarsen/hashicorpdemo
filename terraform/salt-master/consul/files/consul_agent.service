@@ -7,7 +7,7 @@ After=network-online.target
 User=root
 Environment=GOMAXPROCS=2
 Restart=on-failure
-ExecStart=/usr/bin/consul agent -data-dir=/tmp/consul -recursor=169.254.169.254 -retry-join-gce-tag-value consul  -bind={{ grains['ipv4'][0] }} -config-dir=/etc/consul.d -syslog
+ExecStart=/usr/bin/consul agent -data-dir=/opt/consul -recursor=169.254.169.254 -retry-join-gce-tag-value consul  -bind={{ grains['ipv4'][0] }} -config-dir=/etc/consul.d -syslog
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 
